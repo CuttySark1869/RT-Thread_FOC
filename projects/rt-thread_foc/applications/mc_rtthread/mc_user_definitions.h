@@ -58,7 +58,7 @@
 
 /* Motor configuration */
 #define MOTOR_NUM_POLE_PAIRS    1           /* Number of pole pairs in the motor */
-#define MOTOR_QE_PPR            256         /* Number of quadrature encoder pulses per mechanical revolution */
+#define MOTOR_QE_PPR            1024         /* Number of quadrature encoder pulses per mechanical revolution */
 
 /* Quadrature encoder configuration */
 #define QE_DEV_NAME             "pulse2"

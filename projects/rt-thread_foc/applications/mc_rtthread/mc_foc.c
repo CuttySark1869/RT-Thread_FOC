@@ -207,7 +207,7 @@ void mc_foc(void)
     mc_svpwm_gen(&transform.clarke, &svm);
 
     /*Update PWM duty cycles*/
-    //mc_pwm_set(pwm_dev, &svm);
+    mc_pwm_set(pwm_dev, &svm);
 
 #ifdef SPEED_CONTROL_ENABLE
     p_context->control_sync++;

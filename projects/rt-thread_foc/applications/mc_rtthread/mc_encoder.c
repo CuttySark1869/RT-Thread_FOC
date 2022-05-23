@@ -14,9 +14,10 @@ void mc_read_qe(rt_device_t dev, mc_input_signals_t *input)
 {
     struct rt_pulse_encoder_device *pulse_encoder = (struct rt_pulse_encoder_device *)dev;
     input->qe_count = pulse_encoder->ops->get_count(pulse_encoder);
-    pulse_encoder->ops->clear_count(pulse_encoder);
+    //pulse_encoder->ops->clear_count(pulse_encoder);
 
-    input->e_angle += input->qe_count * QE_COUNT_TO_RAD;
+    input->e_angle = (input->qe_count % MOTOR_QE_PPR) * QE_COUNT_TO_RAD;
+
     input->qe_count_sum += input->qe_count;
 
     return;
