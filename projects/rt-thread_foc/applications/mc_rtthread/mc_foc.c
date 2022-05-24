@@ -139,8 +139,8 @@ int mc_foc_init(void)
     rt_device_open(pulse_encoder_dev, RT_DEVICE_OFLAG_RDWR);
 
     /* ADC offset calibration */
-    //mc_adc_offset_calibration(adc1_dev, 0, &input.a_offset);
-    //mc_adc_offset_calibration(adc2_dev, 1, &input.b_offset);
+    mc_adc_offset_calibration(adc1_dev, 0, &input.a_offset);
+    mc_adc_offset_calibration(adc2_dev, 1, &input.b_offset);
 
     /* FOC structure initialization */
     /* Initialize PI controller block structure */
@@ -190,7 +190,7 @@ void mc_foc(void)
 
     /* Clarke and Park transform */
     mc_clarke_park_transform(&input, &transform);
-
+#if 0
     /* D/Q current PI control */
     q_axis_controller.in_meas = transform.park.q_axis;
     mc_pi_control(&q_axis_controller);
@@ -199,7 +199,10 @@ void mc_foc(void)
     d_axis_controller.in_meas = transform.park.d_axis;
     mc_pi_control(&d_axis_controller);
     transform.park.d_axis = d_axis_controller.out;
-
+#else
+    transform.park.d_axis = 0;
+    transform.park.q_axis = 0.6;
+#endif
     /* Inverse Clarke and Park transform */
     mc_inverse_park_transform(&transform);
 

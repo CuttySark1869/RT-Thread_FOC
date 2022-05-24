@@ -26,10 +26,10 @@ void mc_read_currents(rt_adc_device_t adc1_dev, rt_adc_device_t adc2_dev, mc_inp
 {
     rt_uint32_t result1, result2;
     result1 = _adc_read(adc1_dev, ADC1_CH_RANK);
-    result2 = _adc_read(adc1_dev, ADC1_CH_RANK);
+    result2 = _adc_read(adc2_dev, ADC2_CH_RANK);
 
-    input->ia = ADC_CURRENT_SCALE * (float)(result1 - input->a_offset);
-    input->ib = ADC_CURRENT_SCALE * (float)(result2 - input->b_offset);
+    input->ia = ADC_CURRENT_SCALE * (signed)(result1 - input->a_offset);
+    input->ib = ADC_CURRENT_SCALE * (signed)(result2 - input->b_offset);
 
     input->ic = - input->ia - input->ib;
 }

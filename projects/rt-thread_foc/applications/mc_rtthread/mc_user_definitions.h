@@ -54,7 +54,7 @@
 #define ADC_REF_VOLTAGE         3.3f         /*  ADC reference voltage */
 
 #define ADC_MAX_CURRENT         1           /* Absolute current measurement range of ADC */
-#define ADC_CURRENT_SCALE       ADC_MAX_CURRENT/(ADC_MAX_COUNT)
+#define ADC_CURRENT_SCALE       0.0002442f
 
 /* Motor configuration */
 #define MOTOR_NUM_POLE_PAIRS    1           /* Number of pole pairs in the motor */
